@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main.xml"
+    app:startDestination="@id/nav_scanner">
+
+    <fragment
+        android:id="@+id/comercianteDetailFragment"
+        android:name="com.summit.sistemaautorizacion.ui.init.admin.comerciante.ComercianteDetailFragment"
+        android:label="fragment_comerciante_detail"
+        tools:layout="@layout/fragment_comerciante_detail" >
+        <argument
+            android:name="identificador"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_comerciante"
+        android:name="com.summit.sistemaautorizacion.ui.init.admin.comerciante.ListComerciantesFragment"
+        android:label="fragment_list_comerciantes"
+        tools:layout="@layout/fragment_list_comerciantes" >
+        <action
+            android:id="@+id/action_listComerciantesFragment_to_updateComerciantesFragment"
+            app:destination="@id/updateComerciantesFragment" />
+        <action
+            android:id="@+id/action_listComerciantesFragment_to_putComerciantesFragment"
+            app:destination="@id/putComerciantesFragment" />
+        <action
+            android:id="@+id/action_listComerciantesFragment_to_comercianteDetailFragment"
+            app:destination="@id/comercianteDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_personal"
+        android:name="com.summit.sistemaautorizacion.ui.init.admin.personal.ListPersonalFragment"
+        android:label="fragment_list_personal"
+        tools:layout="@layout/fragment_list_personal" >
+        <action
+            android:id="@+id/action_listPersonalFragment_to_registerPersonalFragment"
+            app:destination="@id/registerPersonalFragment" />
+        <action
+            android:id="@+id/action_listPersonalFragment_to_updatePersonalFragment"
+            app:destination="@id/updatePersonalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.summit.sistemaautorizacion.ui.init.admin.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/putComerciantesFragment"
+        android:name="com.summit.sistemaautorizacion.ui.init.admin.comerciante.PutComerciantesFragment"
+        android:label="fragment_put_comerciantes"
+        tools:layout="@layout/fragment_put_comerciantes" />
+    <fragment
+        android:id="@+id/registerPersonalFragment"
+        android:name="com.summit.sistemaautorizacion.ui.init.admin.personal.RegisterPersonalFragment"
+        android:label="fragment_register_personal"
+        tools:layout="@layout/fragment_register_personal" >
+        <action
+            android:id="@+id/action_registerPersonalFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_scanner"
+        android:name="com.summit.sistemaautorizacion.ui.init.supervisor.scanner.ScannnerFragment"
+        android:label="fragment_scannner"
+        tools:layout="@layout/fragment_scannner" />
+    <fragment
+        android:id="@+id/updateComerciantesFragment"
+        android:name="com.summit.sistemaautorizacion.ui.init.admin.comerciante.UpdateComerciantesFragment"
+        android:label="fragment_update_comerciantes"
+        tools:layout="@layout/fragment_update_comerciantes" >
+        <argument
+            android:name="identificador"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/updatePersonalFragment"
+        android:name="com.summit.sistemaautorizacion.ui.init.admin.personal.UpdatePersonalFragment"
+        android:label="fragment_update_personal"
+        tools:layout="@layout/fragment_update_personal" >
+        <action
+            android:id="@+id/action_updatePersonalFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
+        <argument
+            android:name="identificador"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.summit.sistemaautorizacion.ui.camerax.GalleryFragment"
+        android:label="GalleryFragment" />
+</navigation>

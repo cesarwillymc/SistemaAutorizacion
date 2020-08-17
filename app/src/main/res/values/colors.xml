@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#3F51B5</color>
+
+    <!--Gris Scale-->
+    <color name="white">#f9f9f9</color>
+    <color name="gris_1">#CCCCCE</color>
+    <color name="gris_2">#7F7F83</color>
+    <color name="gris_3">#7F7F83</color>
+    <color name="gris_4">#56575C</color>
+    <color name="gris_5">#2D2E35</color>
+    <color name="black">#06070F</color>
+    <color name="icActive">#FFFFFFFF</color>
+    <color name="icFocused">#DDFFFFFF</color>
+    <color name="icPressed">#AAFFFFFF</color>
+</resources>
