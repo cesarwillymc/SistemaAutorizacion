@@ -126,7 +126,7 @@
             app:layout_constraintTop_toBottomOf="@+id/lbl_name_personal">
 
             <EditText
-                android:id="@+id/lbl_lastname__personal"
+                android:id="@+id/lbl_lastname_personal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#fff"

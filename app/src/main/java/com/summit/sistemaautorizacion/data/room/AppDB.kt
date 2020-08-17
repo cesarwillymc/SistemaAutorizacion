@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.summit.sistemaautorizacion.common.Constants
 import com.summit.sistemaautorizacion.data.model.Usuario
 
-@Database(entities = [ Usuario::class],version = 1)
+@Database(entities = [ Usuario::class],version = 2)
 abstract class AppDB:RoomDatabase() {
     abstract val profileDao: UsuarioDao
     companion object{

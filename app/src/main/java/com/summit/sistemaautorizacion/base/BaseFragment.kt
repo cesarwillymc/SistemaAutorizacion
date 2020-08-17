@@ -79,6 +79,13 @@ abstract class BaseFragment : Fragment(){
             }.show()
         }
     }
+    fun snakBarDefinitivo(mensaje: String){
+        Snackbar.make(requireView(),mensaje, Snackbar.LENGTH_INDEFINITE).also { snackbar ->
+            snackbar.setAction("Ok"){
+                snackbar.dismiss()
+            }.show()
+        }
+    }
     fun EditText.textTrim():String{
         return this.text.toString().trim()
     }

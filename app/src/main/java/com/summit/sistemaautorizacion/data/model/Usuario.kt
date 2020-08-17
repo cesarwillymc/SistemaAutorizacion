@@ -12,8 +12,8 @@ data class Usuario(
     var phone:String?="",
     val role:String="",
     var password:String?="",
-    var image:String,
-    var createdBy:String?,
+    var image:String?="",
+    var createdBy:String?="",
     @PrimaryKey(autoGenerate = false)
     var _id:String=""
 )

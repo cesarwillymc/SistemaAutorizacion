@@ -23,12 +23,13 @@ object Constants {
     const val NAME_POST_LIKE="NAME_POST_LIKE"
     const val NAME_POST="NAME_POST"
     //CLave auth gmail
-    const val  TIPE_ADMIN="ADMIN"
-    const val TIPE_SUPERVISOR= "SUPERVISOR"
+    const val  TIPE_ADMIN="Supervisor"
+    const val TIPE_SUPERVISOR= "Administrador"
 
     val profesiones= listOf("Medicina Humana","Enfermería","Nutrición Humana","Odontología","Biología", "Psicología",
         "Trabajo Social","Obstetricia","Tecnología Médica","Farmacia y Bioquímica","Ciencias de la Comunicación Social", "Derecho",
         "Ingeniería Económica","Educación Inicial","Educación Primaria","Educación Secundaria","Ingeniería de Sistemas","Ingenierìa Ambiental")
 
     val temas= listOf("Todos","Salud","Sintomatología","Tecnología")
+    val tipe = listOf(TIPE_ADMIN,TIPE_SUPERVISOR)
 }

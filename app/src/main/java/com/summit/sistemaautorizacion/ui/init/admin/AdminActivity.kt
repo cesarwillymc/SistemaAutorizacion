@@ -59,24 +59,39 @@ class AdminActivity : BaseActivity(),KodeinAware {
                         R.id.nav_scanner->{
                             toolbar_main.hide()
                             nav_view.show()
+                            cameraVM.imageSelect.postValue("")
                         }
                         R.id.nav_comerciante->{
                             toolbar_main.hide()
                             nav_view.show()
+                            cameraVM.imageSelect.postValue("")
                         }
                         R.id.nav_personal->{
                             toolbar_main.hide()
                             nav_view.show()
+                            cameraVM.imageSelect.postValue("")
                         }
                         R.id.nav_profile->{
                             toolbar_main.hide()
                             nav_view.show()
+                            cameraVM.imageSelect.postValue("")
                         }
                         R.id.galleryFragment->{
                             toolbar_main.hide()
                             nav_view.show()
                         }
+                        R.id.registerPersonalFragment->{
+                            toolbar_main.show()
+                            nav_view.hide()
+                            cameraVM.imageSelect.postValue("")
+                        }
+                        R.id.updatePersonalFragment->{
+                            toolbar_main.show()
+                            nav_view.hide()
+                            cameraVM.imageSelect.postValue("")
+                        }
                         else->{
+                            cameraVM.imageSelect.postValue("")
                             toolbar_main.show()
                             nav_view.hide()
                         }

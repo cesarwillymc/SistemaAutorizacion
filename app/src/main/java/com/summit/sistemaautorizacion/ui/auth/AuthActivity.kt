@@ -50,11 +50,9 @@ class AuthActivity : BaseActivity(),KodeinAware {
                         navigateToActivity(Intent(this, AdminActivity::class.java))
                     }
                     else -> {
-                        navigateToActivity(Intent(this,AuthActivity::class.java))
+                        toast("Contactate con un administrador, tu cuenta no es valida")
                     }
                 }
-            }else{
-                navigateToActivity(Intent(this,AuthActivity::class.java))
             }
         })
     }

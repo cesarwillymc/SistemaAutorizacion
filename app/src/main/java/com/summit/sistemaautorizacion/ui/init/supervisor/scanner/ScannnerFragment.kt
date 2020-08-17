@@ -96,7 +96,7 @@ class ScannnerFragment : BaseFragment(),KodeinAware , QRCodeReaderView.OnQRCodeR
     }
 
     override fun onQRCodeRead(text: String?, points: Array<out PointF>?) {
-        Log.e("camera","datos")
+        snakBar(text!!)
     }
 
     override fun onResume() {

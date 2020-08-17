@@ -6,5 +6,5 @@ data class Comerciantes(
     val lastname:String,
     val dni:String,
     val celular:String,
-    val _id:String
+    val _id:String=""
 )
