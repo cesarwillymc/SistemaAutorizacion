@@ -26,7 +26,6 @@ import kotlinx.android.synthetic.main.fragment_register_personal.lbl_image_profi
 import kotlinx.android.synthetic.main.fragment_register_personal.lbl_name_personal
 import kotlinx.android.synthetic.main.fragment_register_personal.lbl_password_personal
 import kotlinx.android.synthetic.main.fragment_register_personal.spinner_tipe
-import kotlinx.android.synthetic.main.fragment_update_personal.*
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
@@ -76,13 +75,13 @@ class RegisterPersonalFragment : BaseFragment(),KodeinAware {
             findNavController().navigate(RegisterPersonalFragmentDirections.actionRegisterPersonalFragmentToGalleryFragment())
         }
         lbl_actualizar_personal.setOnClickListener {
-            val name= lbl_name_personal.textTrim()
-            val lastname= lbl_lastname_personal.textTrim()
-            val dni= lbl_dni_personal.textTrim()
-            val pasword= lbl_password_personal.textTrim()
-            val celular= lbl_celular_personal.textTrim()
-            val tipe= spinner_tipe.selectedItem.toString()
             if (comprobarDatos()){
+                val name= lbl_name_personal.textTrim()
+                val lastname= lbl_lastname__personal.textTrim()
+                val dni= lbl_dni_personal.textTrim()
+                val pasword= lbl_password_personal.textTrim()
+                val celular= lbl_celular_personal.textTrim()
+                val tipe= spinner_tipe.selectedItem.toString()
                 enviarDatos(name,lastname,dni,pasword,celular,tipe)
             }
         }
@@ -96,7 +95,7 @@ class RegisterPersonalFragment : BaseFragment(),KodeinAware {
         celular: String,
         tipe: String
     ) {
-        viewModel.createPersonal(Usuario(name, lastname, dni,celular,tipe,pasword),file!!,"image").observe(viewLifecycleOwner,
+        viewModel.createPersonal(Usuario(name, lastname, dni,celular,tipe,pasword),file!!,"imagen").observe(viewLifecycleOwner,
             Observer {
                 when(it){
                     is Resource.Loading->{

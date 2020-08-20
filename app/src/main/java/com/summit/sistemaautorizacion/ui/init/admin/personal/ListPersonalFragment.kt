@@ -62,7 +62,7 @@ class ListPersonalFragment : BaseFragment(),KodeinAware,PersonalAdapter.clickPer
         viewModel.loadListPersonal().observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading->{
-                    snakBar("Cargando")
+                  //  snakBar("Cargando")
                 }
                 is Resource.Success->{
                     if(it.data!=null){
@@ -81,7 +81,7 @@ class ListPersonalFragment : BaseFragment(),KodeinAware,PersonalAdapter.clickPer
 
     }
     override fun listenerClick(postList: PersonalList, position: Int) {
-        findNavController().navigate(ListPersonalFragmentDirections.actionListPersonalFragmentToUpdatePersonalFragment(postList._id))
+        findNavController().navigate(ListPersonalFragmentDirections.actionListPersonalFragmentToUpdatePersonalFragment(postList._id,postList))
     }
 
 

@@ -22,6 +22,13 @@ fun detectar_formato(texto: String): String {
     }  else
         "ninguno"
 }
+fun detectar_csv(texto: String): String {
+    return if (texto.contains("csv")) {
+        "csv"
+    }else{
+        "ninguno"
+    }
+}
 
 fun<T> lazyDeferred(block: suspend CoroutineScope.() -> T): Lazy<Deferred<T>>{
     return lazy {

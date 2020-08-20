@@ -13,8 +13,8 @@ abstract class SafeApiRequest {
     suspend fun <T:Any> apiRequest(call: suspend () -> Response<T>): T {
         val response = call.invoke()
         if (response.isSuccessful){
-            try { if (response.headers().get("authToken")!=null){
-                val token =  response.headers().get("authToken").toString()
+            try { if (response.headers().get("access_token")!=null){
+                val token =  response.headers().get("access_token").toString()
                 Log.e("token",token)
                 setSomeStringValue(PREF_TOKEN,token)
             } }catch (e:Exception){ }

@@ -154,6 +154,7 @@
             android:layout_height="wrap_content"
             android:background="#fff"
             android:fontFamily="@font/montserrat"
+            android:text="70390980"
             android:hint="DNI"
             android:padding="10dp" />
 
@@ -188,6 +189,7 @@
             android:background="#fff"
             android:fontFamily="@font/montserrat"
             android:hint="Contraseña"
+            android:text="123456789"
             android:padding="10dp" />
 
     </androidx.cardview.widget.CardView>

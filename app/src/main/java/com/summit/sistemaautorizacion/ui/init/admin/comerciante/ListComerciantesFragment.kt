@@ -60,7 +60,7 @@ class ListComerciantesFragment : BaseFragment(),KodeinAware, ComercianteAdapter.
         viewModel.loadListComerciante().observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading->{
-                    snakBar("Cargando")
+                 //   snakBar("Cargando")
                 }
                 is Resource.Success->{
                     if(it.data!=null){

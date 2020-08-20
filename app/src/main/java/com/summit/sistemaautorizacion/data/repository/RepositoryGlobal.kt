@@ -25,5 +25,6 @@ class RepositoryGlobal(private val api:ApiRetrofit,private val db:AppDB):SafeApi
     suspend fun deletePersonal(id: String) = apiRequest { api.deletepersonal(id) }
     suspend fun getInfoPersonal (id:String)= apiRequest { api.getInfoPersonal(id) }
     suspend fun createPersonal(usuario: Usuario) = apiRequest { api.createPersonal(usuario) }
+    suspend fun changePasswordPersonal(id: String,password: String) = apiRequest { api.changePasswordPersonal(id,password) }
 
 }

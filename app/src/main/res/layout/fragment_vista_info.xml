@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+
     android:paddingBottom="20dp"
     tools:context=".ui.init.supervisor.scanner.VistaInfo">
 
@@ -64,7 +66,7 @@
 
     <TextView
         android:id="@+id/dialog_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Jorge Antonio Canaza Quispe"
@@ -72,12 +74,14 @@
         android:textSize="18sp"
         app:fontFamily="@font/montserrat"
         app:layout_constraintBottom_toBottomOf="@+id/textView11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.01"
         app:layout_constraintStart_toEndOf="@+id/textView19"
         app:layout_constraintTop_toTopOf="@+id/textView11" />
 
     <TextView
         android:id="@+id/dialog_dni"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="70321701"
@@ -85,12 +89,14 @@
         android:textSize="18sp"
         app:fontFamily="@font/montserrat"
         app:layout_constraintBottom_toBottomOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView19"
         app:layout_constraintTop_toTopOf="@+id/textView12" />
 
     <TextView
         android:id="@+id/dialog_phone"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="+051 962601310"
@@ -98,6 +104,8 @@
         android:textSize="18sp"
         app:fontFamily="@font/montserrat"
         app:layout_constraintBottom_toBottomOf="@+id/textView13"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView19"
         app:layout_constraintTop_toTopOf="@+id/textView13" />
 
@@ -113,7 +121,7 @@
 
     <TextView
         android:id="@+id/dialog_asociacion"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="Bella durmiente"
@@ -121,6 +129,8 @@
         android:textSize="18sp"
         app:fontFamily="@font/montserrat"
         app:layout_constraintBottom_toBottomOf="@+id/textView19"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/textView19"
         app:layout_constraintTop_toTopOf="@+id/textView19" />
 

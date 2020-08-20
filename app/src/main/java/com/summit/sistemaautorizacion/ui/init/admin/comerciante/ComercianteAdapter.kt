@@ -43,8 +43,8 @@ class ComercianteAdapter(private val listener: postClick): RecyclerView.Adapter<
         val vista = itemView.findViewById<ImageView>(R.id.lbl_list_view_comerciantes)
         fun bind(get: ComercianteList, position: Int) {
 
-            name.text= get.name
-            phone.text= get.phone
+            name.text= "${get.name} ${get.lastname}"
+            phone.text= get.celular
             asociacion.text= get.asociacion
 
             itemView.setOnClickListener {

@@ -3,6 +3,7 @@ package com.summit.sistemaautorizacion.ui.auth
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.BaseAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -27,21 +28,30 @@ class AuthActivity : BaseActivity(),KodeinAware {
     private val authFactory:AuthViewModelFactory by instance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         authVM = run {
             ViewModelProvider(this,authFactory).get(AuthViewModel::class.java)
         }
+        deleteUser()
         signin_btn.setOnClickListener {
             val user= signin_lbl_user.text.toString().trim()
             val pass= signin_lbl_pass.text.toString().trim()
             if(comprobarDatos(user,pass)){
+                checketIsLoggedUser()
                 signInDatos(user,pass)
             }
         }
-        checketIsLoggedUser()
+
     }
+
+    private fun deleteUser() {
+        authVM.deleteUserDB()
+    }
+
     private fun checketIsLoggedUser(){
         authVM.isLoggedUser.observe(this, Observer {
             if (it!=null){
+                Log.e("it",it.toString())
                 when (it.role) {
                     Constants.TIPE_SUPERVISOR -> {
                         navigateToActivity(Intent(this, SupervisorActivity::class.java))

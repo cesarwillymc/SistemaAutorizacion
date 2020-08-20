@@ -87,7 +87,7 @@ abstract class BaseFragment : Fragment(){
         }
     }
     fun EditText.textTrim():String{
-        return this.text.toString().trim()
+        return ""+ text.toString().trim()
     }
     fun EditText.lblVacio():Boolean{
         if (this.text.toString().trim().isEmpty()){

@@ -5,6 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.summit.sistemaautorizacion.R
 import com.summit.sistemaautorizacion.base.BaseFragment
+import com.summit.sistemaautorizacion.common.Constants
 import com.summit.sistemaautorizacion.common.Constants.BASE_URL_AMAZON_IMG
 import com.summit.sistemaautorizacion.common.conexion.Resource
 import com.summit.sistemaautorizacion.data.model.ComercianteList
@@ -24,6 +26,11 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein
 import org.kodein.di.generic.instance
+import java.io.BufferedInputStream
+import java.io.IOException
+import java.io.InputStream
+import java.net.HttpURLConnection
+import java.net.URL
 
 
 class ComercianteDetailFragment : BaseFragment(),KodeinAware {
@@ -58,7 +65,7 @@ class ComercianteDetailFragment : BaseFragment(),KodeinAware {
         }
         lbl_comerciante_copy.setOnClickListener {
             if (enlaceUrl!=null){
-                copyToClipBoard(enlaceUrl!!)
+                copyToClipBoard(BASE_URL_AMAZON_IMG+enlaceUrl!!)
             }else{
                 snakBar("Generando pdf")
             }
@@ -83,7 +90,7 @@ class ComercianteDetailFragment : BaseFragment(),KodeinAware {
                 }
                 is Resource.Success->{
                     enlaceUrl= it.data.message
-                   cargarPdfOffline()
+                    cargarPdfOffline()
                 }
                 is Resource.Failure->{
                     snakBar("Errot")
@@ -96,13 +103,19 @@ class ComercianteDetailFragment : BaseFragment(),KodeinAware {
         val shareIntent = Intent()
         shareIntent.action = Intent.ACTION_SEND
         shareIntent.type="text/plain"
-        shareIntent.putExtra(Intent.EXTRA_TEXT, enlaceUrl!!);
+        shareIntent.putExtra(Intent.EXTRA_TEXT, BASE_URL_AMAZON_IMG+enlaceUrl!!);
         startActivity(Intent.createChooser(shareIntent,"Compartir enlace con: "))
     }
     private fun cargarPdfOffline() {
-        lbl_comerciante_pdf.settings.javaScriptEnabled = true
+        try {
+            RetrievePdfStream().execute(BASE_URL_AMAZON_IMG+enlaceUrl!!)
+        }catch (e:Exception){
+            snakBar(e.message!!)
+        }
+
+       /* lbl_comerciante_pdf.settings.javaScriptEnabled = true
         lbl_comerciante_pdf.settings.allowFileAccess = true
-        lbl_comerciante_pdf.loadUrl(BASE_URL_AMAZON_IMG+enlaceUrl)
+        lbl_comerciante_pdf.loadUrl(BASE_URL_AMAZON_IMG+enlaceUrl!!)*/
     }
     private fun copyToClipBoard( message: String) {
 
@@ -110,5 +123,28 @@ class ComercianteDetailFragment : BaseFragment(),KodeinAware {
         val clipData = ClipData.newPlainText("label",message)
         clipBoard.setPrimaryClip(clipData)
         snakBar("Copiado correctamente")
+    }
+    inner class RetrievePdfStream : AsyncTask<String, Void, InputStream>() {
+
+        override fun onPostExecute(result: InputStream?) {
+            super.onPostExecute(result)
+            lbl_comerciante_pdf.fromStream(result).load()
+        }
+        override fun doInBackground(vararg p0: String?): InputStream? {
+            var inputStream:InputStream? = null
+
+            try {
+                val url = URL(p0[0])
+                val urlConnection =  url.openConnection() as HttpURLConnection
+                if (urlConnection.responseCode == 200) {
+                    inputStream =  BufferedInputStream(urlConnection.inputStream)
+
+                }
+            } catch ( e: IOException) {
+                return null
+
+            }
+            return inputStream
+        }
     }
 }

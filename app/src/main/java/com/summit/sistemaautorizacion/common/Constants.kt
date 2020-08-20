@@ -2,7 +2,7 @@ package com.summit.sistemaautorizacion.common
 
 object Constants {
     //Api Url
-    const val BASE_URL_API="https://comandocovid.herokuapp.com/api/v1/"
+    const val BASE_URL_API="https://api-qr-puno.herokuapp.com/api/"
     //const val BASE_URL_API="http://18.188.74.142:4000/api/"
     const val BASE_URL_AMAZON_IMG="https://summit-puno.s3.us-east-2.amazonaws.com/"
 
@@ -23,8 +23,8 @@ object Constants {
     const val NAME_POST_LIKE="NAME_POST_LIKE"
     const val NAME_POST="NAME_POST"
     //CLave auth gmail
-    const val  TIPE_ADMIN="Supervisor"
-    const val TIPE_SUPERVISOR= "Administrador"
+    const val  TIPE_ADMIN="Administrador"
+    const val TIPE_SUPERVISOR= "Supervisor"
 
     val profesiones= listOf("Medicina Humana","Enfermería","Nutrición Humana","Odontología","Biología", "Psicología",
         "Trabajo Social","Obstetricia","Tecnología Médica","Farmacia y Bioquímica","Ciencias de la Comunicación Social", "Derecho",

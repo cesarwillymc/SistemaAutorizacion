@@ -9,20 +9,22 @@
 
     <TextView
         android:id="@+id/lbl_list_name_comerciantes"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:text="Jose antonio"
+        android:lines="1"
         android:textColor="@color/black"
         android:textSize="22sp"
         app:fontFamily="@font/montserrat_medium"
+        app:layout_constraintEnd_toStartOf="@+id/lbl_list_view_comerciantes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/lbl_list_asociacion_comerciantes"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
@@ -30,6 +32,7 @@
         android:textColor="@color/black"
         android:textSize="14sp"
         app:fontFamily="@font/montserrat_light"
+        app:layout_constraintEnd_toEndOf="@+id/lbl_list_name_comerciantes"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lbl_list_name_comerciantes" />
 

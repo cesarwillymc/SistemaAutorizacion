@@ -8,6 +8,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -42,7 +43,7 @@ class AdminActivity : BaseActivity(),KodeinAware {
         //            R.id.registerAdmin, R.id.sendSms,R.id.validateNumber
         navController= findNavController(R.id.am_fragment)
         setupActionBarWithNavController(navController,appBarConfiguration)
-
+        nav_view.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             Dexter.withContext(this).withPermissions(
@@ -78,17 +79,15 @@ class AdminActivity : BaseActivity(),KodeinAware {
                         }
                         R.id.galleryFragment->{
                             toolbar_main.hide()
-                            nav_view.show()
+                            nav_view.hide()
                         }
                         R.id.registerPersonalFragment->{
                             toolbar_main.show()
                             nav_view.hide()
-                            cameraVM.imageSelect.postValue("")
                         }
                         R.id.updatePersonalFragment->{
                             toolbar_main.show()
                             nav_view.hide()
-                            cameraVM.imageSelect.postValue("")
                         }
                         else->{
                             cameraVM.imageSelect.postValue("")

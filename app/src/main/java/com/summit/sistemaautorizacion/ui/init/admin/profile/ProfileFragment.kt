@@ -1,5 +1,6 @@
 package com.summit.sistemaautorizacion.ui.init.admin.profile
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,7 +12,9 @@ import com.bumptech.glide.Glide
 import com.summit.sistemaautorizacion.R
 import com.summit.sistemaautorizacion.base.BaseFragment
 import com.summit.sistemaautorizacion.common.Constants.BASE_URL_AMAZON_IMG
+import com.summit.sistemaautorizacion.common.SharedPreferencsManager.Companion.clearAllManagerShared
 import com.summit.sistemaautorizacion.data.model.Usuario
+import com.summit.sistemaautorizacion.ui.auth.AuthActivity
 import com.summit.sistemaautorizacion.ui.auth.AuthViewModel
 import com.summit.sistemaautorizacion.ui.auth.AuthViewModelFactory
 import com.summit.sistemaautorizacion.ui.init.GlobalViewModel
@@ -45,8 +48,14 @@ class ProfileFragment : BaseFragment(),KodeinAware {
         authVM.isLoggedUser.observe(viewLifecycleOwner, Observer {
             if(it!=null){
                 bindingData(it)
+            }else{
+                navigateToActivity(Intent(requireContext(),AuthActivity::class.java))
             }
         })
+        logout.setOnClickListener {
+            clearAllManagerShared()
+            authVM.deleteUserDB()
+        }
     }
 
     private fun bindingData(usuario: Usuario) {

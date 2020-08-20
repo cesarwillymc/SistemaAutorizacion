@@ -64,7 +64,11 @@
         android:id="@+id/nav_scanner"
         android:name="com.summit.sistemaautorizacion.ui.init.supervisor.scanner.ScannnerFragment"
         android:label="fragment_scannner"
-        tools:layout="@layout/fragment_scannner" />
+        tools:layout="@layout/fragment_scannner" >
+        <action
+            android:id="@+id/action_nav_scanner_to_vistaInfo"
+            app:destination="@id/vistaInfo" />
+    </fragment>
     <fragment
         android:id="@+id/updateComerciantesFragment"
         android:name="com.summit.sistemaautorizacion.ui.init.admin.comerciante.UpdateComerciantesFragment"
@@ -85,9 +89,21 @@
         <argument
             android:name="identificador"
             app:argType="string" />
+        <argument
+            android:name="datos"
+            app:argType="com.summit.sistemaautorizacion.data.model.PersonalList" />
     </fragment>
     <fragment
         android:id="@+id/galleryFragment"
         android:name="com.summit.sistemaautorizacion.ui.camerax.GalleryFragment"
         android:label="GalleryFragment" />
+    <dialog
+        android:id="@+id/vistaInfo"
+        android:name="com.summit.sistemaautorizacion.ui.init.supervisor.scanner.VistaInfo"
+        android:label="fragment_vista_info"
+        tools:layout="@layout/fragment_vista_info" >
+        <argument
+            android:name="key"
+            app:argType="string" />
+    </dialog>
 </navigation>

@@ -3,11 +3,13 @@ package com.summit.sistemaautorizacion.ui.init.supervisor
 import android.Manifest
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import com.karumi.dexter.Dexter
 import com.karumi.dexter.MultiplePermissionsReport
 import com.karumi.dexter.PermissionToken
@@ -41,9 +43,10 @@ class SupervisorActivity : BaseActivity(), KodeinAware {
             R.id.nav_profile,R.id.nav_scanner))
         //, R.id.register,
         //            R.id.registerAdmin, R.id.sendSms,R.id.validateNumber
+
         navController= findNavController(R.id.am_fragment_s)
         setupActionBarWithNavController(navController,appBarConfiguration)
-
+        nav_view_s.setupWithNavController(navController)
 
         navController.addOnDestinationChangedListener { controller, destination, arguments ->
             Dexter.withContext(this).withPermissions(
@@ -86,4 +89,9 @@ class SupervisorActivity : BaseActivity(), KodeinAware {
         return navController.navigateUp()
     }
     override fun getLayout()=R.layout.activity_supervisor
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        return super.onCreateOptionsMenu(menu)
+
+    }
 }

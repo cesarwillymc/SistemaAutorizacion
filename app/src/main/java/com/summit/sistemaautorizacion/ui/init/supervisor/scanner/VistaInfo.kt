@@ -2,15 +2,12 @@ package com.summit.sistemaautorizacion.ui.init.supervisor.scanner
 
 import android.app.Dialog
 import android.os.Bundle
-import android.os.Handler
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.summit.sistemaautorizacion.R
 import com.summit.sistemaautorizacion.common.conexion.Resource
 import com.summit.sistemaautorizacion.data.model.Comerciantes
@@ -38,22 +35,25 @@ class VistaInfo : DialogFragment(),KodeinAware {
         }
         return inflater.inflate(R.layout.fragment_vista_info, container, false)
     }
-    private lateinit var dialogPrincipal: Dialog
+    /*lateinit var dialoFragment:Dialog
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        dialoFragment = super.onCreateDialog(savedInstanceState)
+        return dialoFragment
+    }*/
 
-        dialogPrincipal= super.onCreateDialog(savedInstanceState)
-        return dialogPrincipal
-    }
+
     override fun onStart() {
         super.onStart()
-        dialogPrincipal.window!!.setLayout(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.MATCH_PARENT)
+       /* val d = Dialog(requireContext())
+        d.window!!.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT)*/
     }
     lateinit var id:String
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        id= VistaInfoArgs.fromBundle(requireArguments()).key
         cargarDatos()
         dialog_close.setOnClickListener {
-            dialogPrincipal.dismiss()
+            dismiss()
         }
     }
 

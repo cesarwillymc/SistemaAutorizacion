@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.summit.sistemaautorizacion.R
 import com.summit.sistemaautorizacion.base.BaseFragment
 import com.summit.sistemaautorizacion.common.conexion.Resource
+import com.summit.sistemaautorizacion.common.detectar_csv
 import com.summit.sistemaautorizacion.common.getPath
 import com.summit.sistemaautorizacion.ui.auth.AuthViewModel
 import com.summit.sistemaautorizacion.ui.auth.AuthViewModelFactory
@@ -62,7 +63,7 @@ class PutComerciantesFragment : BaseFragment(),KodeinAware {
     private fun sendPdfRetrofit() {
         val dato = File(requireActivity().getPath(pdfUri!!))
         val name=requireContext().contentResolver.getType(pdfUri!!)
-        viewModel.uploadExcel(dato,"pdf",name!!).observe(viewLifecycleOwner, Observer {
+        viewModel.uploadExcel(dato,"fileCsv",name!!).observe(viewLifecycleOwner, Observer {
             when(it){
                 is Resource.Loading->{
                     snakBarDefinitivo("Subiendo")
@@ -86,8 +87,15 @@ class PutComerciantesFragment : BaseFragment(),KodeinAware {
             when (requestCode) {
 
                 20-> try{
-                    pdfUri= data!!.data
-                    lbl_name_excel.text = "PDF: ${pdfUri!!.path}"
+                    val dato= data!!.data!!
+                    if(detectar_csv(dato.path.toString()) != "ninguno"){
+                        pdfUri=dato
+
+                        lbl_name_excel.text = "PDF: ${pdfUri!!.path}"
+                    }else{
+                        snakBar("El archivo debe ser CSV")
+                    }
+
                 }catch (e:Exception){
                     Log.e("errorPdf", e.message!!)
                 }

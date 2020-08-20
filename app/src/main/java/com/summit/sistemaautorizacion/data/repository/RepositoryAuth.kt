@@ -1,9 +1,12 @@
 package com.summit.sistemaautorizacion.data.repository
 
+import android.util.Log
+import com.summit.sistemaautorizacion.common.Constants
 import com.summit.sistemaautorizacion.common.Constants.PREF_ID_USER
 import com.summit.sistemaautorizacion.common.SharedPreferencsManager.Companion.setSomeStringValue
 import com.summit.sistemaautorizacion.common.conexion.SafeApiRequest
 import com.summit.sistemaautorizacion.data.model.Usuario
+import com.summit.sistemaautorizacion.data.model.responseGeneral
 import com.summit.sistemaautorizacion.data.retrofit.ApiRetrofit
 import com.summit.sistemaautorizacion.data.room.AppDB
 import com.thesummitdev.daloo.rider.data.remote.model.request.requestSignIn
@@ -29,7 +32,12 @@ class RepositoryAuth(private val api: ApiRetrofit,private val db: AppDB):SafeApi
     //Acceso a retrofit
 
     /**Acceso a login mediante correo y contraseña**/
-    suspend fun signIn(requestSignIn: requestSignIn) = apiRequest { api.loginUser(requestSignIn) }
+    suspend fun signIn(requestSignIn: requestSignIn): responseGeneral {
+        val response= apiRequest { api.loginUser(requestSignIn) }
+       // setSomeStringValue(Constants.PREF_TOKEN,response.token)
+        Log.e("token",response.token)
+        return response
+    }
 
 
     /**Obtiene la informacion de la cuenta**/
@@ -40,7 +48,6 @@ class RepositoryAuth(private val api: ApiRetrofit,private val db: AppDB):SafeApi
     }
 
     /**Registro de Docente**/
-    suspend fun signUp(profile: Usuario) = apiRequest { api.createDocente(profile) }
 
 
 

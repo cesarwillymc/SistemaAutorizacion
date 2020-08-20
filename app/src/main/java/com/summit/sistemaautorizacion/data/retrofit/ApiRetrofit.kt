@@ -15,40 +15,41 @@ import java.util.concurrent.TimeUnit
 
 interface ApiRetrofit {
 
-    @POST("service/signup")
-    suspend fun createDocente(
-        @Body usuario: Usuario
-    ): Response<responseGeneral>
-
 
 
     @Multipart
-    @PUT("service/logoService")
+    @PUT("user/uploadImg/{id}")
     suspend fun sendImageWithId(
         @Part file: MultipartBody.Part,
-        @Part("image") name: RequestBody,
-        @Query("id") key:String?
+        @Part("imagen") name: RequestBody,
+        @Path("id") key:String?
     ): Response<responseGeneral>
-    @POST("service/signin")
+    @POST("auth/signin")
     suspend fun loginUser(
         @Body request: requestSignIn
     ): Response<responseGeneral>
 
-    @GET("service/information")
+    @GET("user/information")
     suspend fun getUserInfo(): Response<Usuario>
     //PERSONAL
-    @GET("service/information")
+    @GET("user/all")
     suspend fun getListPersonal(): Response<List<PersonalList>>
-    @PUT("service/information/{id}")
+    @PUT("user/{id}")
     suspend fun putPersonal(
         @Path("id") id:String,
         @Body usuario: Usuario
     ): Response<responseGeneral>
-    @DELETE("service/information/{id}")
+    @FormUrlEncoded
+    @PUT("user/changePassword/{id}")
+    suspend fun changePasswordPersonal(
+        @Path("id") id:String,
+        @Field("password") password: String
+    ): Response<responseGeneral>
+    @DELETE("user/{id}")
     suspend fun deletepersonal(
         @Path("id") id:String
     ): Response<responseGeneral>
-    @POST("service/information/{id}")
+    @POST("auth/signup")
     suspend fun createPersonal(
         @Body usuario: Usuario
     ): Response<responseGeneral>
@@ -57,33 +58,33 @@ interface ApiRetrofit {
         @Path("id") id:String
     ):Response<Usuario>
     //Comerciante
-    @GET("service/information")
+    @GET("trader/all")
     suspend fun getListComerciante(): Response<List<ComercianteList>>
 
-    @GET("service/information/{id}")
+    @GET("trader/information/{id}")
     suspend fun getInfoComerciante(
         @Path("id") id:String
     ):Response<Comerciantes>
 
-    @DELETE("service/information/{id}")
+    @DELETE("trader/{id}")
     suspend fun deletecomerciante(
         @Path("id") id:String
     ): Response<responseGeneral>
 
-    @GET("service/information/{id}")
+    @GET("trader/qr/{id}")
     suspend fun getQRcomerciante(
         @Path("id") id:String
     ): Response<responseGeneral>
 
 
     @Multipart
-    @PUT("service/logoService")
+    @POST("trader/csv")
     suspend fun uploadExcel(
         @Part file: MultipartBody.Part,
-        @Part("excel") name: RequestBody
+        @Part("fileCsv") name: RequestBody
     ): Response<responseGeneral>
 
-    @PUT("service/information/{id}")
+    @PUT("trader/{id}")
     suspend fun putComerciante(
         @Path("id") id:String,
         @Body comerciantes: Comerciantes

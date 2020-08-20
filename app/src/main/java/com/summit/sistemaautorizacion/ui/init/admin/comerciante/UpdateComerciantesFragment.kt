@@ -45,12 +45,13 @@ class UpdateComerciantesFragment : BaseFragment(),KodeinAware {
         }
         loadData()
         loadExcel.setOnClickListener {
-            val asociacion = lbl_name_asociacion.textTrim()
-            val name= lbl_name.textTrim()
-            val lastname= lbl_lastname.textTrim()
-            val dni= lbl_dni.textTrim()
-            val celular= lbl_celular.textTrim()
+
             if(comprobarDatos()){
+                val asociacion = lbl_name_asociacion.textTrim()
+                val name= lbl_name.textTrim()
+                val lastname= lbl_lastname.textTrim()
+                val dni= lbl_dni.textTrim()
+                val celular= lbl_celular.textTrim()
                 updatearDatos(asociacion,name,lastname,dni,celular)
             }
         }

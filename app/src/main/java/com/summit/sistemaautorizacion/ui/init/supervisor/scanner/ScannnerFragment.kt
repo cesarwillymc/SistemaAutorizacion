@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.dlazaro66.qrcodereaderview.QRCodeReaderView
 import com.summit.sistemaautorizacion.R
 import com.summit.sistemaautorizacion.base.BaseFragment
@@ -41,6 +42,7 @@ class ScannnerFragment : BaseFragment(),KodeinAware , QRCodeReaderView.OnQRCodeR
     companion object {
         private const val REQUEST_CAMERA_PERMISSION = 10
     }
+    var estadolinternar=false
     override fun getLayout()=R.layout.fragment_scannner
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -55,8 +57,16 @@ class ScannnerFragment : BaseFragment(),KodeinAware , QRCodeReaderView.OnQRCodeR
         lbl_scan.setOnClickListener {
             iniciarScan()
         }
+        linterna.setOnClickListener {
+            if (!estadolinternar){
+                qrdecoderview.setTorchEnabled(true)
+            }else{
+                qrdecoderview.setTorchEnabled(false)
+            }
+            estadolinternar=!estadolinternar
+        }
     }
-
+    var temporar=""
     private fun isCameraPermissionGranted(): Boolean {
         val selfPermission = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.CAMERA)
         return selfPermission == PackageManager.PERMISSION_GRANTED
@@ -75,6 +85,7 @@ class ScannnerFragment : BaseFragment(),KodeinAware , QRCodeReaderView.OnQRCodeR
 
     private fun iniciarScan(){
         if (isCameraPermissionGranted()) {
+            temporar=""
             qrdecoderview.setOnQRCodeReadListener(this)
             //Use this function to enable/disable decoding
             qrdecoderview.setQRDecodingEnabled(true);
@@ -83,7 +94,7 @@ class ScannnerFragment : BaseFragment(),KodeinAware , QRCodeReaderView.OnQRCodeR
             qrdecoderview.setAutofocusInterval(2000L);
 
             // Use this function to enable/disable Torch
-            qrdecoderview.setTorchEnabled(true);
+
 
             // Use this function to set front camera preview
             qrdecoderview.setFrontCamera();
@@ -96,16 +107,37 @@ class ScannnerFragment : BaseFragment(),KodeinAware , QRCodeReaderView.OnQRCodeR
     }
 
     override fun onQRCodeRead(text: String?, points: Array<out PointF>?) {
-        snakBar(text!!)
+
+        if (temporar!=text){
+
+            Log.e("size","${text!!.length} $text")
+            if (text!!.length==24){
+                findNavController().navigate(ScannnerFragmentDirections.actionNavScannerToVistaInfo(text!!))
+            }else{
+                snakBar("El codigo qr no es valido")
+            }
+            temporar=text!!
+        }
+
     }
 
     override fun onResume() {
         super.onResume()
-        qrdecoderview.startCamera();
+        try {
+            qrdecoderview.startCamera();
+        }catch (e:Exception){
+
+        }
+
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        qrdecoderview.stopCamera();
+        try {
+            qrdecoderview.stopCamera();
+        }catch (e:Exception){
+
+        }
+
     }
 }
